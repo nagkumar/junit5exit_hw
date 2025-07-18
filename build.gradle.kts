@@ -18,6 +18,10 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    jvmArgs(
+	"--add-opens", "java.base/java.lang=ALL-UNNAMED",
+	"--add-opens", "java.base/java.io=ALL-UNNAMED"
+	   )
     jvmArgumentProviders.add(CommandLineArgumentProvider {
 	listOf("-javaagent:${
 	    configurations.testRuntimeClasspath.get().files.find {
@@ -25,4 +29,30 @@ tasks.test {
 	    }
 	}")
     })
+
+    testLogging {
+	events("passed", "skipped", "failed")
+	exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+	showExceptions = true
+	showCauses = true
+	showStackTraces = true
+    }
+
+    // Optional: Set system properties for tests
+    systemProperties(
+	"junit.jupiter.execution.parallel.enabled" to "true",
+	"junit.jupiter.execution.parallel.mode.default" to "concurrent"
+		    )
+}
+
+tasks.withType<Test> {
+    jvmArgs("--enable-preview") // If using preview features
+}
+
+tasks.withType<JavaCompile> {
+    options.compilerArgs.addAll(
+	listOf(
+	    "--enable-preview", // If using preview features
+	    "-Xlint:unchecked",
+	    "-Xlint:deprecation"))
 }
