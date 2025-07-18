@@ -26,10 +26,3 @@ tasks.test {
 	}")
     })
 }
-
-tasks.register("printTestRuntimeClasspath") {
-    doLast {
-	println("All testRuntimeClasspath files:")
-	configurations.testRuntimeClasspath.get().files.forEach { println(it) }
-    }
-}
