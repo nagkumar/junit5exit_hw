@@ -1,6 +1,5 @@
 package com.example;
 
-import com.ginsberg.junit.exit.ExpectSystemExit;
 import com.ginsberg.junit.exit.ExpectSystemExitWithStatus;
 import com.ginsberg.junit.exit.SystemExitExtension;
 import org.junit.jupiter.api.Test;
@@ -18,11 +17,12 @@ public class HelloWorldTest
 
     @Test
     @ExpectSystemExitWithStatus(42)
-    void testSystemExit2() throws InterruptedException {
-        new Thread(() -> {
-            new HelloWorld().sayHelloAndExit();
-        }).start();
+    void testSystemExit2() throws InterruptedException
+    {
+	new Thread(() -> {
+	    new HelloWorld().sayHelloAndExit();
+	}).start();
 
-        Thread.sleep(1000);  // Give it some time to execute
+	Thread.sleep(1000);  // Give it some time to execute
     }
 }
