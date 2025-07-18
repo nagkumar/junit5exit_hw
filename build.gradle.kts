@@ -16,10 +16,7 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
-    forkEvery = 1
-    ignoreFailures = false
-    failFast = true
-    maxParallelForks = 1
+
     jvmArgumentProviders.add(CommandLineArgumentProvider {
 	listOf("-javaagent:${
 	    configurations.testRuntimeClasspath.get().files.find {
@@ -27,7 +24,4 @@ tasks.test {
 	    }
 	}")
     })
-    testLogging {
-	events("passed", "skipped", "failed")
-    }
 }
