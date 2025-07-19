@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("com.ginsberg:junit5-system-exit:2.0.1")
+    testImplementation("com.ginsberg:junit5-system-exit:2.0.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
