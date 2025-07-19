@@ -5,6 +5,12 @@ plugins {
 group = "com.example"
 version = "1.0-SNAPSHOT"
 
+java {
+    toolchain {
+	languageVersion = JavaLanguageVersion.of(24)
+    }
+}
+
 repositories {
     mavenCentral()
 }
