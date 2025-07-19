@@ -11,15 +11,9 @@ repositories {
 
 dependencies {
     testImplementation("com.ginsberg:junit5-system-exit:2.0.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+    testImplementation("org.ow2.asm:asm:9.8") //fix to bug https://github.com/tginsberg/junit5-system-exit/issues/34
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-tasks.withType<Test>().configureEach {
-    jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED",
-	    "--add-opens", "java.base/java.io=ALL-UNNAMED",
-	    "--add-opens", "java.base/java.util=ALL-UNNAMED",
-	    "--add-exports", "java.base/sun.security.util=ALL-UNNAMED")
 }
 
 tasks.test {
