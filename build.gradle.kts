@@ -55,6 +55,7 @@ tasks.withType<Test>().configureEach {
 								     " - ${result.successfulTestCount} succeeded")
 								 println(" - ${result.failedTestCount} failed")
 								 println(" - ${result.skippedTestCount} skipped")
+								 println("\nTest Report: file:///" + reports.html.entryPoint.absolutePath.replace(File.separatorChar, '/'))
 							     }
 							 }))
 }
