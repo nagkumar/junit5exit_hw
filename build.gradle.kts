@@ -48,10 +48,15 @@ tasks.withType<Test>().configureEach {
     afterSuite(
 	KotlinClosure2<TestDescriptor, TestResult, Unit>({ desc, result ->
 							     if (desc.parent == null)
-							     { // This is the root suite
-								 println("\n🔧 Java (used by Gradle): ${System.getProperty("java.runtime.version")}")
-								 println("🧠 Java VM: ${System.getProperty("java.vm.name")} (${System.getProperty("java.vm.version")})")
-								 println("🛠 Gradle Version: ${gradle.gradleVersion}\n\n")
+							     {
+								 println("\n🔧 Java (used by Gradle): ${
+								     System.getProperty("java.runtime.version")
+								 }")
+								 println("🧠 Java VM: ${
+								     System.getProperty("java.vm.name")
+								 } (${System.getProperty("java.vm.version")})")
+								 println(
+								     "🛠 Gradle Version: ${gradle.gradleVersion}\n\n")
 
 								 println("🔍 Test Summary:")
 								 println(" - ${result.testCount} tests executed")
@@ -59,7 +64,9 @@ tasks.withType<Test>().configureEach {
 								     " - ${result.successfulTestCount} succeeded")
 								 println(" - ${result.failedTestCount} failed")
 								 println(" - ${result.skippedTestCount} skipped")
-								 println("\nTest Report: file:///" + reports.html.entryPoint.absolutePath.replace(File.separatorChar, '/'))
+								 println(
+								     "\nTest Report: file:///" + reports.html.entryPoint.absolutePath.replace(
+									 File.separatorChar, '/'))
 							     }
 							 }))
 }
