@@ -30,5 +30,31 @@ tasks.test {
 	}
 	listOf("-javaagent:${dd}")
     })
+
+    jvmArgs(
+	"--add-opens", "java.base/java.lang=ALL-UNNAMED",
+	"--add-opens", "java.base/java.io=ALL-UNNAMED"
+	   )
+
+    testLogging {
+	exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+	showExceptions = true
+	showCauses = true
+	showStackTraces = true
+    }
 }
 
+tasks.withType<Test>().configureEach {
+    afterSuite(
+	KotlinClosure2<TestDescriptor, TestResult, Unit>({ desc, result ->
+							     if (desc.parent == null)
+							     { // This is the root suite
+								 println("🔍 Test Summary:")
+								 println(" - ${result.testCount} tests executed")
+								 println(
+								     " - ${result.successfulTestCount} succeeded")
+								 println(" - ${result.failedTestCount} failed")
+								 println(" - ${result.skippedTestCount} skipped")
+							     }
+							 }))
+}
