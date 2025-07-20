@@ -49,6 +49,10 @@ tasks.withType<Test>().configureEach {
 	KotlinClosure2<TestDescriptor, TestResult, Unit>({ desc, result ->
 							     if (desc.parent == null)
 							     { // This is the root suite
+								 println("\n🔧 Java (used by Gradle): ${System.getProperty("java.runtime.version")}")
+								 println("🧠 Java VM: ${System.getProperty("java.vm.name")} (${System.getProperty("java.vm.version")})")
+								 println("🛠 Gradle Version: ${gradle.gradleVersion}\n\n")
+
 								 println("🔍 Test Summary:")
 								 println(" - ${result.testCount} tests executed")
 								 println(
